@@ -59,8 +59,12 @@ class TfIdfFilter(Module):
         self.threshold = threshold
 
     def execute(self, input: list[str]):
-        vectorizer = TfidfVectorizer() 
-        train_tf = vectorizer.fit(input) 
+        vectorizer = TfidfVectorizer()
+        try:
+            train_tf = vectorizer.fit(input)
+        except ValueError:
+            self.result = input
+            return 
         idf_scores = train_tf.idf_
 
         # Normalize IDF scores
