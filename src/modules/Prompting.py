@@ -1,6 +1,6 @@
 from src.interfaces.Module import Module
 
-class Prompter(Module):
+class PromptingModule(Module):
     def __init__(self, mode, next = None):
         super().__init__(next)
         self.module = mode
