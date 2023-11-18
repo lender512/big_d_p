@@ -1,6 +1,6 @@
 from src.interfaces.Module import Module
 from src.tools.TranscribeOpenaiApi import TranscribeOpenaiApi
-import whisper
+#import whisper
 from tqdm import tqdm
 import numpy as np
 

@@ -11,13 +11,14 @@ class GptApiModule(Module):
         self.tokens = tokens
         self.GptApi = GptApi
 
-    def execute(self, prompt):
-        result = self.GptApi.complete(
-            model = self.model,
-            purpose=prompt["purpose"],
-            body=prompt["body"],
-            tokens=self.tokens,
-            temperature= GptApiModule.INPUT_LLM_TEMPERATURE
-        )
-        self.result = result
+    def execute(self, prompts):
+        self.result = []
+        for prompt in prompts:
+            self.result.append(self.GptApi.complete(
+                model = self.model,
+                purpose=prompt["purpose"],
+                body=prompt["body"],
+                tokens=self.tokens,
+                temperature= GptApiModule.INPUT_LLM_TEMPERATURE
+            ))
 
