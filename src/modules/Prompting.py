@@ -15,8 +15,9 @@ class PromptingModule(Module):
             raise Exception("Invalid mode")
 
     def execute(self, text):
+        
         if self.module == "autocritic":
-            return {
+            self.result = {
                 "purpose": self.purpose,
                 "body": f"""
                 * TEXTO INICIAL: {text['ctx']['initial']}
@@ -24,7 +25,7 @@ class PromptingModule(Module):
 """
             }
         else:
-            return {
+            self.result = {
                 "purpose": self.purpose,
                 "body": text
             }

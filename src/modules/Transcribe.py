@@ -11,7 +11,7 @@ class WhisperApiModule(Module):
 
     def execute(self, file_path: str):
         with open(file_path, "rb") as audio_file:
-            transcript = TranscribeOpenaiApi(
+            transcript = TranscribeOpenaiApi.transcribe(
                 file = audio_file,
                 model = WhisperApiModule.INPUT_S2T_MODEL,
                 response_format=WhisperApiModule.OUTPUT_TEXT_FORMAT,

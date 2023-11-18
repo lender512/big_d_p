@@ -12,7 +12,7 @@ class GptApiModule(Module):
         self.GptApi = GptApi
 
     def execute(self, prompt):
-        result = self.GptApi(
+        result = self.GptApi.complete(
             model = self.model,
             purpose=prompt["purpose"],
             body=prompt["body"],
