@@ -2,16 +2,22 @@ from src.interfaces.Module import Module
 from src.tools.LlmChatOpenaiApi import LlmChatOpenaiApi
 from src.tools.LlmLegacyOpenaiApi import LlmLegacyOpenaiApi
 
-class ChatGpt3ApiModule(Module):
-    def execute(self, input: str):
-        chat = LlmChatOpenaiApi(
-            prompt = input,
-            engine = "davinci",
-            max_tokens = 100,
-            temperature = 0.9,
-            top_p = 1,
-            frequency_penalty = 0.0,
-            presence_penalty = 0.0,
-            stop = ["\n", "Human:", "AI:"]
+class ChatGptApiModule(Module):
+    INPUT_LLM_TEMPERATURE = 0.0
+
+    def __init__(self, GptApiModule, model, tokens, next = None):
+        super().__init__(next)
+        self.model = model
+        self.tokens = tokens
+        self.GptApiModule = GptApiModule
+
+    def execute(self, prompt):
+        result = self.GptApiModule(
+            model = self.model,
+            purpose=prompt["purpose"],
+            body=prompt["body"],
+            tokens=self.tokens,
+            temperature= ChatGptApiModule.INPUT_LLM_TEMPERATURE
         )
-        self.result = chat
+        self.result = result
+
