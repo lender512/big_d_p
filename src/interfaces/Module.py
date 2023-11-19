@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+from abc import ABC
 
-class Module(object):
+
+class Module(ABC):
     name: str = ""
     next: Module = None
     result: any = None
