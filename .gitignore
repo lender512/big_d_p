@@ -163,3 +163,7 @@ cython_debug/
 main.py
 .idea/
 get_reference.py
+analisis.ipynb
+extract.py
+run-experiments.py
+sum_up_rd.py
