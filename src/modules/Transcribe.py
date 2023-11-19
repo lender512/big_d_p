@@ -26,7 +26,6 @@ class WhisperApiModule(Module):
                 response_format=WhisperApiModule.OUTPUT_TEXT_FORMAT,
                 language=WhisperApiModule.INPUT_AUDIO_LANGUAGE
             )
-            print(transcript)
             transcript_total += transcript
         else:
             chunks = []
@@ -45,7 +44,6 @@ class WhisperApiModule(Module):
                     response_format=WhisperApiModule.OUTPUT_TEXT_FORMAT,
                     language=WhisperApiModule.INPUT_AUDIO_LANGUAGE
                 )
-                print(transcript)
                 transcript_total += transcript
 
         os.remove(self.TEMP_FILE)
@@ -61,6 +59,11 @@ class WhisperLocalModule(Module):
     def __init__(self, model: str = "small", language: str = "Spanish", fp16: bool = False):
         self.model = whisper.load_model(model)
         self.options = whisper.DecodingOptions(language=language, fp16=fp16)
+        self.config = {
+            'model': model,
+            'language': language,
+            'fp16': fp16,
+        }
 
     def execute(self, file_path: str):
         audio = whisper.load_audio(file_path)

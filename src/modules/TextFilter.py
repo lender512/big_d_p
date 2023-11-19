@@ -19,6 +19,9 @@ class FuzzyClean(Module):
 
     def __init__(self, next: Module = None, threshold: float = 0.9):
         super().__init__(next)
+        self.config = {
+            'threshold': threshold,
+        }
         self.threshold = threshold
 
 
@@ -56,6 +59,9 @@ class RemoveNonExistingWords(Module):
 class TfIdfFilter(Module):
     def __init__(self, next: Module = None, threshold: float = 0.9):
         super().__init__(next)
+        self.config = {
+            'threshold': threshold,
+        }
         self.threshold = threshold
 
     def execute(self, input: list[str]):

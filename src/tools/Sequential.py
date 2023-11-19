@@ -22,10 +22,8 @@ class Sequential(object):
                 currentModule = currentModule.next
             currentModule.next = module
 
-    def set_input(self, input):
+    def forward(self, input):
         self.input = input
-
-    def forward(self):
         currentModule = self.startModule
         while currentModule is not None:
             print(f"Executing {currentModule.name}")
@@ -33,3 +31,6 @@ class Sequential(object):
             self.input = currentModule.result
             currentModule = currentModule.next
         return self.input
+
+    def __call__(self, input):
+        return self.forward(input)

@@ -7,6 +7,7 @@ class Module(ABC):
     name: str = ""
     next: Module = None
     result: any = None
+    config: dict = {}
 
     def __init__(self, next: Module = None):
         self.name = self.__class__.__name__

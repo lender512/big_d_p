@@ -3,6 +3,11 @@ from src.interfaces.Module import Module
 class PromptingModule(Module):
     def __init__(self, mode, chunk_size = 1024, next = None):
         super().__init__(next)
+        self.config = {
+            'mode': mode,
+            'chunk_size': chunk_size,
+            'name': self.__class__.__name__
+        }
         self.module = mode
         self.chunk_size = chunk_size
         if mode == "simple":
