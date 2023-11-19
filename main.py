@@ -17,18 +17,18 @@ if __name__ == "__main__":
     perm = Permutator(
         transcribe_posibilities=[
             Transcribe.WhisperApiModule(),
-            # Transcribe.WhisperLocalModule("tiny", "Spanish", False)
+            Transcribe.WhisperLocalModule("tiny", "Spanish", False)
         ],
         text_filter_posibilities=[
-            # (TextFilter.LowerCase(), TextFilter.FuzzyClean(threshold=0.9)),
-            # (TextFilter.LowerCase(), TextFilter.FuzzyClean(threshold=0.9), TextFilter.RemoveStopWords(),
-            #  TextFilter.RemoveNonExistingWords()),
+            (TextFilter.LowerCase(), TextFilter.FuzzyClean(threshold=0.9)),
+            (TextFilter.LowerCase(), TextFilter.FuzzyClean(threshold=0.9), TextFilter.RemoveStopWords(),
+             TextFilter.RemoveNonExistingWords()),
             (TextFilter.LowerCase(), TextFilter.FuzzyClean(threshold=0.9), TextFilter.RemoveStopWords(),
              TextFilter.RemoveNonExistingWords(), TextFilter.TfIdfFilter(threshold=0.1))
         ],
         prompting_posibilities=[
             Prompting.PromptingModule("simple"),
-            # Prompting.PromptingModule("verbose")
+            Prompting.PromptingModule("verbose")
         ],
         topic_detection_posibilities=[
             TopicDetection.GptApiModule(LlmChatOpenaiApi, "gpt-3.5-turbo", 1024),
